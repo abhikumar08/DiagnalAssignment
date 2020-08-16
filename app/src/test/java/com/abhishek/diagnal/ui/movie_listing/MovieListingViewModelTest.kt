@@ -23,6 +23,7 @@ import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
+import org.mockito.Mockito.anyInt
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 import kotlin.coroutines.CoroutineContext
@@ -42,8 +43,9 @@ class MovieListingViewModelTest {
     @Rule
     @JvmField
     var instantTaskExecutorRule: InstantTaskExecutorRule = InstantTaskExecutorRule()
-    private val testDispatcher = TestCoroutineDispatcher()
-    private val testCoroutineScope = TestCoroutineScope()
+
+    private var testDispatcher = TestCoroutineDispatcher()
+    private var testCoroutineScope = TestCoroutineScope()
 
 
     @Before
@@ -71,11 +73,23 @@ class MovieListingViewModelTest {
         val list = List(20) {
             Movie("", "")
         }
-        val page = 1
+
+        testCoroutineScope.launch(testDispatcher){
+            `when`(repository.getMovies(ArgumentMatchers.anyInt())).thenReturn(list)
+            SUT.getMovies()
+            assertEquals(SUT.hasReachedMax.value, false)
+        }
+    }
+
+    @Test
+    fun getMovies_20MoviesFetched_currentPageShouldbeIncreased() {
+        val list = List(20) {
+            Movie("", "")
+        }
+        val page =1
         testCoroutineScope.launch(testDispatcher){
             `when`(repository.getMovies(page)).thenReturn(list)
             SUT.getMovies()
-            assertEquals(SUT.hasReachedMax.value, false)
             assertEquals(page + 1, SUT.currentPage.value)
         }
     }
@@ -88,7 +102,7 @@ class MovieListingViewModelTest {
         }
     }
 
-    @Test fun searchMovies_ifQueryLengthLessThan3_searchMoviesShouldBeCalled(){
+    @Test fun searchMovies_ifQueryLengthLessThan3_searchMoviesShouldNotBeCalled(){
         val query = "Fa"
         testCoroutineScope.launch(testDispatcher){
             SUT.searchMovies(query)
@@ -97,10 +111,6 @@ class MovieListingViewModelTest {
     }
 
 
-    @After
-    fun tearDown() {
-
-    }
 
 }
 

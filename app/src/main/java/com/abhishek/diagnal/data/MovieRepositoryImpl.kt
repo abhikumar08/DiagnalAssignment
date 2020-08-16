@@ -25,7 +25,7 @@ class MovieRepositoryImpl(private val moshi: Moshi, private val context: Context
             }
             val inputStream: InputStream = context.resources.openRawResource(jsonFile)
             val writer: Writer = StringWriter()
-            val buffer = CharArray(1024)
+            val buffer = CharArray(DEFAULT_BUFFER_SIZE)
             inputStream.use { ist ->
                 val reader: Reader = BufferedReader(InputStreamReader(ist, "UTF-8"))
                 var n: Int
@@ -37,10 +37,8 @@ class MovieRepositoryImpl(private val moshi: Moshi, private val context: Context
             val jsonString: String = writer.toString()
             val adapter: JsonAdapter<MoviesPage> = moshi.adapter(MoviesPage::class.java)
             val moviesPage = adapter.fromJson(jsonString)
-            moviesPage?.page?.movieItems?.movie?.let {
-                return@withContext it
-            }
-        }!!
+            moviesPage?.page?.movieItems?.movie
+        } ?: emptyList()
     }
 
     override suspend fun searchMovies(query: String): List<Movie> {
