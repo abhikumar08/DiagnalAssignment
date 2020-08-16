@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/movieListingFragment">
+
+    <fragment
+        android:id="@+id/movieListingFragment"
+        android:name="com.abhishek.diagnal.ui.movie_listing.MovieListingFragment"
+        android:label="Romantic Comedy"
+        tools:layout="@layout/movie_listing_fragment" >
+
+    </fragment>
+</navigation>
