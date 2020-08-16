@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "24563961193",
+    "firebase_url": "https://diagnal-55940.firebaseio.com",
+    "project_id": "diagnal-55940",
+    "storage_bucket": "diagnal-55940.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:24563961193:android:d1f42358c32245604701f8",
+        "android_client_info": {
+          "package_name": "com.abhishek.diagnal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "24563961193-9k3v12deqnpvm828t20va3k2o7bm977i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxYvoEtA2aE2qT8itvLvkBn424Bc62IRI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "24563961193-9k3v12deqnpvm828t20va3k2o7bm977i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
