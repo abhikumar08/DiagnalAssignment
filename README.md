@@ -1,4 +1,4 @@
-# DiagnalAssignment
+
 The app demonstrates the use of Hilt, MVVM, Coroutines, Unit testing coroutines
 Major highlights and used libraries 
 - Used MVVM architecture 
