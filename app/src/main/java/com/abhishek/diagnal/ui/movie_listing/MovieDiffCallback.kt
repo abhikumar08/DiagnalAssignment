@@ -6,7 +6,7 @@ import com.abhishek.diagnal.models.Movie
 class MovieDiffCallback(private val oldList: List<Movie>, private val newList: List<Movie>) :
     DiffUtil.Callback() {
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition].name == newList[newItemPosition].name && oldList[oldItemPosition].posterImage == newList[newItemPosition].posterImage
+        return oldList[oldItemPosition] == newList[newItemPosition]
     }
 
     override fun getOldListSize(): Int = oldList.size
